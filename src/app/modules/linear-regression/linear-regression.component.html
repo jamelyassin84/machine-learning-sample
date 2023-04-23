@@ -1,0 +1,83 @@
+<div class="flex items-center justify-center p-4 mx-24 bg-white rounded-2xl">
+    <div class="grid w-full grid-cols-2 gap-x-20">
+        <div>
+            <div
+                class="flex items-center w-full py-3 border-b border-b-gray-100"
+                *ngFor="let data of REGRESSION_DATA; let i = index"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="mr-3 text-purple-500 bi bi-graph-up-arrow"
+                    viewBox="0 0 16 16"
+                >
+                    <path
+                        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v1h14V3a1 1 0 0 0-1-1H2zm13 3H1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V5z"
+                    />
+                    <path
+                        d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-2 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"
+                    />
+                </svg>
+
+                {{ data[0] | day_of_week }}
+
+                <div class="ml-auto">
+                    {{ data[1] | number }}
+                </div>
+
+                <div>
+                    <button
+                        (click)="remove(i)"
+                        class="px-5 py-1 ml-4 text-white bg-red-500 rounded-s-full"
+                    >
+                        Remove
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div>Choose Day:</div>
+            <select
+                [(ngModel)]="day"
+                (change)="predict()"
+                class="px-5 py-2 border"
+            >
+                <option *ngFor="let day of WEEK_DAYS">{{ day }}</option>
+            </select>
+            <br />
+            <br />
+            <br />
+
+            <div class="flex items-center">
+                <div>
+                    <div>Add Data</div>
+                    <input
+                        [(ngModel)]="numberToAdd"
+                        class="w-full px-5 py-2 border"
+                        type="number"
+                    />
+                </div>
+
+                <button
+                    (click)="add()"
+                    class="px-5 py-2 mt-5 ml-4 text-white bg-black rounded-lg roun"
+                >
+                    Add
+                </button>
+            </div>
+
+            <br />
+            <br />
+            <br />
+            <div>Prediction:</div>
+            <div
+                class="flex items-center w-full text-4xl font-black text-emerald-500"
+            >
+                {{ prediction | number }}
+            </div>
+        </div>
+    </div>
+</div>
